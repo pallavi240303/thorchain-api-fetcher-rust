@@ -1,8 +1,9 @@
 use serde::{Deserialize, Serialize};
 use serde_with::{serde_as, DisplayFromStr};
+use sqlx::prelude::FromRow;
 
 #[serde_as]
-#[derive(Debug , Serialize , Deserialize)]
+#[derive(Debug , Serialize , Deserialize , FromRow)]
 #[serde(rename_all = "camelCase")]
 pub struct DepthInterval {
     #[serde_as(as = "DisplayFromStr")]
@@ -38,10 +39,13 @@ pub struct DepthInterval {
 pub struct RunePoolInterval {
     #[serde_as(as = "DisplayFromStr")]
     pub count: i64,
+    
     #[serde_as(as = "DisplayFromStr")]
     pub end_time: i64,
+    
     #[serde_as(as = "DisplayFromStr")]
     pub start_time: i64,
+    
     #[serde_as(as = "DisplayFromStr")]
     pub units: i64,
 }
@@ -52,16 +56,22 @@ pub struct RunePoolInterval {
 pub struct Pool {
     #[serde_as(as = "DisplayFromStr")]
     pub asset_liquidity_fees: i64,
+    
     #[serde_as(as = "DisplayFromStr")]
     pub earnings: i64,
+    
     #[serde_as(as = "DisplayFromStr")]
     pub pool: String,
+    
     #[serde_as(as = "DisplayFromStr")]
     pub rewards: i64,
+    
     #[serde_as(as = "DisplayFromStr")]
     pub rune_liquidity_fees: i64,
+    
     #[serde_as(as = "DisplayFromStr")]
     pub saver_earning: i64,
+    
     #[serde_as(as = "DisplayFromStr")]
     pub total_liquidity_fees_rune: i64,
 }
@@ -72,22 +82,31 @@ pub struct Pool {
 pub struct EarningInterval {
     #[serde_as(as = "DisplayFromStr")]
     pub avg_node_count: f64,
+
     #[serde_as(as = "DisplayFromStr")]
     pub block_rewards: f64,
+    
     #[serde_as(as = "DisplayFromStr")]
     pub bonding_earnings: f64,
+    
     #[serde_as(as = "DisplayFromStr")]
     pub earnings: f64,
+    
     #[serde_as(as = "DisplayFromStr")]
     pub end_time: i64,
+    
     #[serde_as(as = "DisplayFromStr")]
     pub liquidity_earnings: f64,
+    
     #[serde_as(as = "DisplayFromStr")]
     pub liquidity_fees: f64,
+    
     #[serde_as(as = "DisplayFromStr")]
     #[serde(rename = "runePriceUSD")]
     pub rune_price_usd: f64,
+    
     #[serde_as(as = "DisplayFromStr")]
+    
     pub start_time: i64,
     pub pools: Vec<Pool> 
 }
